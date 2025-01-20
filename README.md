@@ -12,23 +12,6 @@ The dataset is sourced from [Kaggle](https://www.kaggle.com/datasets/andrewmvd/i
 
 ## Directory Structure
 mlops_assignment_group_67/
-├── src/
-│   ├── main.py
-│   ├── preprocess.py
-│   └── train.py
-├── tests/
-│   ├── test_preprocess.py
-│   └── test_train.py
-├── data/
-│   ├── india_stock_market.csv
-│   └── placeholder.txt
-├── .github/
-│   └── workflows/
-│       └── ci_pipeline.yml
-├── Dockerfile
-├── requirements.txt
-├── README.md
-
 - `src/`: Contains the main application code.
 - `tests/`: Unit tests for the application.
 - `.github/workflows/`: CI/CD pipeline definition.
