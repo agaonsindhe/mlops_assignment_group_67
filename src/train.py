@@ -98,7 +98,7 @@ def train_and_log_runs(config_path="config.yaml"):
             mlflow.log_param("run_index", i + 1)
             mlflow.log_param("alpha", params["alpha"])
             mlflow.log_param("solver", params["solver"])
-            mlflow.log_param("dataset_version", "v1")
+            mlflow.log_param("dataset_version", "v2")
             mlflow.log_metric("rmse", metrics["rmse"])
             mlflow.log_metric("mae", metrics["mae"])
             mlflow.log_metric("evs", metrics["evs"])
