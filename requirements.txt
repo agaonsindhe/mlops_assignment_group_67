@@ -10,3 +10,6 @@ dvc[azure]
 azure-storage-blob
 pytest-mock
 matplotlib
+flask
+numpy
+scikit-learn
