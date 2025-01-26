@@ -169,3 +169,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+/model.pkl
+.dvc/config.local
+*.png
+/mlruns
+/venv_mlops

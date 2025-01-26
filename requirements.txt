@@ -1,0 +1,12 @@
+transformers
+pytest
+torch
+pylint
+pandas
+scikit-learn
+mlflow
+dvc
+dvc[azure]
+azure-storage-blob
+pytest-mock
+matplotlib
