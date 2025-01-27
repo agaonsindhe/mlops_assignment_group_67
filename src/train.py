@@ -10,10 +10,10 @@ from mlflow.models import infer_signature
 from sklearn.linear_model import Ridge
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, mean_absolute_error, explained_variance_score, r2_score
-import utils.dataset_utils
 import preprocess
 from utils.utils import load_config, get_config_path
-from utils.logging_utils import log_predicted_vs_actual, log_residual_plot, log_metric_trend
+from utils.logging_utils import log_predicted_vs_actual, log_residual_plot
+from utils.dataset_utils import get_dataset_version, load_data
 
 global input_example, signature, x_test, y_test
 def evaluate_model(model, x_test_param, y_test_param):
@@ -44,8 +44,10 @@ def train_and_log_runs(config_path="config.yaml"):
     # Get the dataset path dynamically
     data_path, model_path = get_config_path(config)
 
+    dataset_version = get_dataset_version(data_path)
+
     # Load and preprocess data
-    df = utils.dataset_utils.load_data(data_path)
+    df = load_data(data_path)
 
     df = preprocess.preprocess_data(df)
 
@@ -98,7 +100,7 @@ def train_and_log_runs(config_path="config.yaml"):
             mlflow.log_param("run_index", i + 1)
             mlflow.log_param("alpha", params["alpha"])
             mlflow.log_param("solver", params["solver"])
-            mlflow.log_param("dataset_version", "v2")
+            mlflow.log_param("dataset_version", dataset_version)
             mlflow.log_metric("rmse", metrics["rmse"])
             mlflow.log_metric("mae", metrics["mae"])
             mlflow.log_metric("evs", metrics["evs"])
