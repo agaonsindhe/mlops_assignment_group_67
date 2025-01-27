@@ -10,10 +10,10 @@ from mlflow.models import infer_signature
 from sklearn.linear_model import Ridge
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, mean_absolute_error, explained_variance_score, r2_score
-import preprocess
-from utils.utils import load_config, get_config_path
-from utils.logging_utils import log_predicted_vs_actual, log_residual_plot
-from utils.dataset_utils import get_dataset_version, load_data
+from src.preprocess import preprocess_data
+from src.utils.utils import load_config, get_config_path
+from src.utils.logging_utils import log_predicted_vs_actual, log_residual_plot
+from src.utils.dataset_utils import get_dataset_version, load_data
 
 global input_example, signature, x_test, y_test
 def evaluate_model(model, x_test_param, y_test_param):
@@ -49,7 +49,7 @@ def train_and_log_runs(config_path="config.yaml"):
     # Load and preprocess data
     df = load_data(data_path)
 
-    df = preprocess.preprocess_data(df)
+    df = preprocess_data(df)
 
     # Dynamically select features based on existing columns
     required_features = ['Open', 'High', 'Low', 'Volume', 'Close_ma_3', 'Close_ma_7', 'Close_lag_1']
