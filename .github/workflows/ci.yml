@@ -32,12 +32,6 @@ jobs:
         run: |
           pylint src tests --fail-under=8.0
 
-      # Step 5: Run Tests
-      - name: Run Tests
-        env:
-          PYTHONPATH: ./src
-        run: pytest
-
       # Step 6: Configure Azure Credentials
       - name: Configure Azure Credentials
         run: |
@@ -49,4 +43,12 @@ jobs:
 
       # Step 8: Reproduce DVC Pipeline
       - name: Reproduce DVC Pipeline
+        env:
+          PYTHONPATH: "${{ github.workspace }}/src"
         run: dvc repro
+
+      # Step 9: Run Tests
+      - name: Run Tests
+        env:
+          PYTHONPATH: ./src
+        run: pytest
