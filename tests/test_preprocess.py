@@ -1,5 +1,4 @@
 from unittest.mock import patch
-
 from src.preprocess import preprocess_data
 from src.utils.utils import load_config, get_config_path, load_data
 import pytest
