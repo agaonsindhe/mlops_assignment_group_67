@@ -43,6 +43,8 @@ jobs:
 
       # Step 8: Reproduce DVC Pipeline
       - name: Reproduce DVC Pipeline
+        env:
+          PYTHONPATH: "${{ github.workspace }}/src"
         run: dvc repro
 
       # Step 9: Run Tests
