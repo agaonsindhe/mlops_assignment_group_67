@@ -19,6 +19,8 @@ def sample_config():
 @pytest.fixture
 def sample_data():
     data = {
+        "Date": ['2008-03-04', '2008-03-19', '2008-03-17', '2008-03-18', '2008-03-05'],
+        "Stock": ['20MICRONS', 'RELCAPITAL', 'NITIRAJ', 'LTI', 'KAMATHOTEL'],
         "Open": [100, 102, 104, 106, 108],
         "High": [101, 103, 105, 107, 109],
         "Low": [99, 101, 103, 105, 107],
@@ -26,10 +28,12 @@ def sample_data():
         "Close": [100, 102, 104, 106, 108],
         "Close_ma_3": [np.nan, np.nan, 102, 104, 106],
         "Close_ma_7": [np.nan, np.nan, np.nan, np.nan, np.nan],
-        "Close_lag_1": [np.nan, 100, 102, 104, 106]
+        "Close_lag_1": [np.nan, 100, 102, 104, 106],
+        "Change Pct": [-3, -2, 2, 1.1, -2.1],
     }
     df = pd.DataFrame(data)
     return df
+
 
 @patch("src.train.mlflow.sklearn.log_model")
 @patch("src.train.mlflow.log_metric")
