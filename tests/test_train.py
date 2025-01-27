@@ -35,7 +35,15 @@ def sample_data():
 @patch("src.train.mlflow.log_metric")
 @patch("src.train.mlflow.log_param")
 @patch("src.train.mlflow.start_run")
+@patch("src.preprocess.preprocess_data")
+@patch("src.utils.utils.load_data")
+@patch("src.utils.utils.get_config_path")
+@patch("src.utils.utils.load_config")
 def test_train_and_log_runs(
+    mock_load_config,
+    mock_get_config_path,
+    mock_load_data,
+    mock_preprocess_data,
     mock_start_run,
     mock_log_param,
     mock_log_metric,
@@ -43,6 +51,15 @@ def test_train_and_log_runs(
     sample_config,
     sample_data,
 ):
+    # Mock configuration loading
+    mock_load_config.return_value = sample_config
+
+    # Mock config path retrieval
+    mock_get_config_path.return_value = ("data/stocks_df.csv", "models/model.pkl")
+
+    # Mock data loading and preprocessing
+    mock_load_data.return_value = sample_data
+    mock_preprocess_data.return_value = sample_data
 
     # Call the function
     train_and_log_runs()
